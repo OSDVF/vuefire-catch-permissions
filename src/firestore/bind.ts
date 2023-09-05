@@ -48,7 +48,8 @@ export interface FirestoreRefOptions extends _DataSourceOptions {
   /**
    * Default Firestore converter to use with snapshots.
    */
-  converter?: FirestoreDataConverter<unknown>
+  converter?: FirestoreDataConverter<unknown>,
+  onError?: (e: any) => void
 }
 
 /**

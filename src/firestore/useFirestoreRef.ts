@@ -148,7 +148,11 @@ export function _useFirestoreRef(
         if (promise.value === newPromise) {
           error.value = reason
         }
-        return Promise.reject(reason) // propagate the error
+        if (options.onError) {
+          options.onError(reason) // swallow the error
+        } else {
+          return Promise.reject(reason) // propagate the error
+        }
       })
       .finally(() => {
         // ensure the current promise is still valid
